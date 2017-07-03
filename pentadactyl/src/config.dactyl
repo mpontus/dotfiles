@@ -1,0 +1,16 @@
+" Emacs as external editor
+set editor='emacsclient -c +<line>:<column> <file>'
+
+" Disable beeping
+set visualbell
+
+" Hide everything except for the status bar
+set guioptions=sC
+set showtabline=never
+
+" Disable domain name guessing
+set! browser.fixup.alternate_enabled=false
+
+" Prevent alt key from bringing up the menu bar
+set! ui.key.menuAccessKeyFocuses=false
+set! ui.key.menuAccessKey=0

@@ -1,0 +1,54 @@
+""" Enable key bindings from emacs to work during text input
+
+""" Forward/Backward/+Selection cursor movement during input
+" Char
+map -count -modes=i,o,caret,v,c      <C-b>    -builtin <count><Left>
+map -count -modes=i,o,caret,v,c      <C-f>    -builtin <count><Right>
+" Line
+map -count -modes=i,o,caret,v        <C-p>    -builtin <count><Up>
+map -count -modes=i,o,caret,v        <C-n>    -builtin <count><Down>
+" Word
+map -count -modes=i,o,caret,v,c      <A-b>    -builtin <count><C-Left>
+map -count -modes=i,o,caret,v,c      <A-f>    -builtin <count><C-Right>
+" End of line
+map        -modes=i,o,caret,v,c      <C-a>    -builtin <Home>
+map        -modes=i,o,caret,v,c      <C-e>    -builtin <End>
+
+""" Forward/Backward selection during input
+" Char
+map -count -modes=i,o,caret,v,c      <S-C-b>  -builtin <count><S-Left>
+map -count -modes=i,o,caret,v,c      <S-C-f>  -builtin <count><S-Right>
+" Line
+map -count -modes=i,o,caret,v,c      <S-A-b>  -builtin <count><C-S-Left>
+map -count -modes=i,o,caret,v,c      <S-A-f>  -builtin <count><C-S-Right>
+" Word
+map -count -modes=i,o,caret,v,c      <S-C-p>  -builtin <count><S-Up>
+map -count -modes=i,o,caret,v,c      <S-C-n>  -builtin <count><S-Down>
+" End of line
+map        -modes=i,o,caret,v,c      <S-C-a>  -builtin <S-Home>
+map        -modes=i,o,caret,v,c      <S-C-e>  -builtin <S-End>
+
+""" Backward/Forward Deletion
+" Char
+map -count -modes=i,c                <C-h>    -builtin <count><BS>
+map -count -modes=i,c                <C-d>    -builtin <count><S-Right><Del>
+" Word
+map -count -modes=i,c                <A-h>    -builtin <count><C-S-Left><Del>
+map -count -modes=i,c                <A-d>    -builtin <count><C-S-Right><Del>
+
+""" Undo/Redo
+map -count -modes=i,c                <C-/>    -builtin <count><C-z>
+map -count -modes=i,c                <C-?>    -builtin <count><C-y>
+
+""" Next/Previous input candidate
+" Completion
+map -count -modes=command-line       <C-p>    -builtin <count><S-Tab>
+map -count -modes=command-line       <C-n>    -builtin <count><Tab>
+" Completion Group
+map -count -modes=command-line       <C-A-p>  -builtin <count><C-S-Tab>
+map -count -modes=command-line       <C-A-n>  -builtin <count><C-Tab>
+" History
+map -count -modes=command-line         <A-p>  -builtin <count><Up>
+map -count -modes=command-line         <A-n>  -builtin <count><Down>
+
+

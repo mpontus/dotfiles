@@ -1,0 +1,18 @@
+""" Tab Rotation
+
+" Key bindings related to this technique:
+" - Alt+<number> to access <number>'th previous active tab
+" - Ctrl+<n>     to bury the active tab, and move it to the end of the list
+" - Ctrl+<p>     to bring up the last buried tab
+" - Shift+<b>    to examine the list of existing tabs
+
+" I use Alt-<n> to switch between a few of the most recent tabs. Farthest tabs
+" are invisible to me until I bring them up explicitly using Ctrl-<p>. If I find
+" a page which I'd like to return to later, I can send it off using Ctrl-<n>.
+
+" Move active tab to the front of the list
+autocmd! LocationChange * :tabmove 0
+
+" Avoid getting stuck in the loop when pressing <C-n>, by moving the active tab to the end of the list before transition
+map -builtin <C-n> -modes n -js { config.tabbrowser.moveTabToEnd(); tabs.select(0);  }
+

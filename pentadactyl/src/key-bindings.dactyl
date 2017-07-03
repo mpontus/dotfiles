@@ -1,0 +1,32 @@
+" Toggle menu bar with <f9>
+nmap -builtin <f9> :set go!=m<CR>
+" Prevent accidental closing of the browser or tab
+nmap -builtin <C-q> <Nop>
+nmap -builtin <C-w> <Nop>
+" Prevent accidental change of 'scroll' setting
+nmap -builtin <C-u> :set scroll=0<CR><C-u>
+nmap -builtin <C-d> :set scroll=0<CR><C-d>
+" Remap colon with semi-colon
+nmap -builtin ; :
+nmap -builtin : ;
+
+""" Miscellaneous key bindings
+" Unfocus input by pressing <C-g>
+imap <C-g> <f6>
+" Focus input visible on the page by pressing <C-i>
+nmap -builtin <C-i> <focus-input>
+" Chose hint by pressing <Space>
+omap -builtin -modes=hints <Space> <CR>
+" Bring up the list of closed tabs by pressing <U>
+nmap -builtin U :undo<space>
+" Scrolling up and down with <c> and <x>
+nmap -builtin <c> <C-u>
+nmap -builtin <x> <C-d>
+
+""" Navigating tab history
+" Previous/Next Page
+nmap -builtin h H
+nmap -builtin l L
+" Navigate to one of preceeding/following pages
+nmap -builtin H :back<space>
+nmap -builtin L :forward<space>

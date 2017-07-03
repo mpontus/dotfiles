@@ -10,6 +10,11 @@ This is my pentadactyl configuration.
  * [Search shortcuts](src/search-engines.dactyl).
  * Better defaults and annoyances fixes.
 
+## How to use this configuration:
+
+1. Create symlink from ~/.pentadactyl to dotfiles/pentadactyl.
+2. Create symlink from ~/.pentadactylrc to ~/.pentadactyl/rc.
+
 ## How to install and use pentadactyl
 
 1. Install Firefox Nightly to enable the use of unsigned packages: https://www.mozilla.org/en-US/firefox/channel/desktop/

@@ -1,3 +1,0 @@
-" Larger hints and command line fonts
-hi Hint -a font-size: 150% !important
-hi Normal>*,CmdInput>* { font-family: monospace; font-size: 14px }

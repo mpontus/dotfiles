@@ -1,0 +1,125 @@
+" -*- mode: vimrc -*-
+
+" Emacs as external editor
+set editor='emacsclient -c +<line>:<column> <file>'
+
+" Disable beeping
+set visualbell
+
+" Hide everything except for the status bar
+set guioptions=sC
+set showtabline=never
+
+" Disable exitting from firefox after closing the last tab
+set! browser.tabs.closeWindowWithLastTab=false
+
+" Disable domain name guessing
+set! browser.fixup.alternate_enabled=false
+
+" Prevent alt key from bringing up the menu bar
+set! ui.key.menuAccessKeyFocuses=false
+set! ui.key.menuAccessKey=0
+
+" Enable key bindings from emacs to work during text input
+
+""" Forward/Backward/+Selection cursor movement during input
+" Char
+map -count -modes=i,o,caret,v,c      <C-b>    -builtin <count><Left>
+map -count -modes=i,o,caret,v,c      <C-f>    -builtin <count><Right>
+" Line
+map -count -modes=i,o,caret,v        <C-p>    -builtin <count><Up>
+map -count -modes=i,o,caret,v        <C-n>    -builtin <count><Down>
+" Word
+map -count -modes=i,o,caret,v,c      <A-b>    -builtin <count><C-Left>
+map -count -modes=i,o,caret,v,c      <A-f>    -builtin <count><C-Right>
+" End of line
+map        -modes=i,o,caret,v,c      <C-a>    -builtin <Home>
+map        -modes=i,o,caret,v,c      <C-e>    -builtin <End>
+
+""" Forward/Backward selection during input
+" Char
+map -count -modes=i,o,caret,v,c      <S-C-b>  -builtin <count><S-Left>
+map -count -modes=i,o,caret,v,c      <S-C-f>  -builtin <count><S-Right>
+" Line
+map -count -modes=i,o,caret,v,c      <S-A-b>  -builtin <count><C-S-Left>
+map -count -modes=i,o,caret,v,c      <S-A-f>  -builtin <count><C-S-Right>
+" Word
+map -count -modes=i,o,caret,v,c      <S-C-p>  -builtin <count><S-Up>
+map -count -modes=i,o,caret,v,c      <S-C-n>  -builtin <count><S-Down>
+" End of line
+map        -modes=i,o,caret,v,c      <S-C-a>  -builtin <S-Home>
+map        -modes=i,o,caret,v,c      <S-C-e>  -builtin <S-End>
+
+""" Backward/Forward Deletion
+" Char
+map -count -modes=i,c                <C-h>    -builtin <count><BS>
+map -count -modes=i,c                <C-d>    -builtin <count><S-Right><Del>
+" Word
+map -count -modes=i,c                <A-h>    -builtin <count><C-S-Left><Del>
+map -count -modes=i,c                <A-d>    -builtin <count><C-S-Right><Del>
+
+""" Undo/Redo
+map -count -modes=i,c                <C-/>    -builtin <count><C-z>
+map -count -modes=i,c                <C-?>    -builtin <count><C-y>
+
+""" Next/Previous input candidate
+" Completion
+map -count -modes=command-line       <C-p>    -builtin <count><S-Tab>
+map -count -modes=command-line       <C-n>    -builtin <count><Tab>
+" Completion Group
+map -count -modes=command-line       <C-A-p>  -builtin <count><C-S-Tab>
+map -count -modes=command-line       <C-A-n>  -builtin <count><C-Tab>
+" History
+map -count -modes=command-line         <A-p>  -builtin <count><Up>
+map -count -modes=command-line         <A-n>  -builtin <count><Down>
+
+" Toggle menu bar with <f9>
+nmap -builtin <f9> :set go!=m<CR>
+" Enter readability mode with <g><r>
+map gr -js let r = document.getElementById('reader-mode-button'); if (!r.hidden) r.click()
+" Prevent accidental closing of the browser or tab
+nmap -builtin <C-q> <Nop>
+nmap -builtin <C-w> <Nop>
+" Prevent accidental change of 'scroll' setting
+nmap -builtin <C-u> :set scroll=0<CR><C-u>
+nmap -builtin <C-d> :set scroll=0<CR><C-d>
+" Remap colon with semi-colon
+nmap -builtin ; :
+nmap -builtin : ;
+
+""" Miscellaneous key bindings
+" Unfocus input by pressing <C-g>
+imap <C-g> <f6>
+" Focus input visible on the page by pressing <C-i>
+nmap -builtin <C-i> <focus-input>
+" Chose hint by pressing <Space>
+omap -builtin -modes=hints <Space> <CR>
+" Bring up the list of closed tabs by pressing <U>
+nmap -builtin U :undo<space>
+" Scrolling up and down with <c> and <x>
+nmap -builtin <c> <C-u>
+nmap -builtin <x> <C-d>
+
+""" Navigating tab history
+" Previous/Next Page
+nmap -builtin h H
+nmap -builtin l L
+" Navigate to one of preceeding/following pages
+nmap -builtin H :back<space>
+nmap -builtin L :forward<space>
+
+""" Shortcuts for searching the web
+set defsearch=g
+bmark -keyword g -title "Google Search" "http://www.google.com/search?q=%s"
+" Shortcut for searching within various forum threads
+bmark -keyword forums -title "Find Discussions" "http://www.google.com/search?q=inurl:(showthread|showtopic|viewthread|viewtopic)+%s"
+" Put 'cache' or 'archive' between ':open' and arbitrary url to retrieve associated entry from google cache or internet web archive
+bmark -keyword archive -title "Web Archive" "http://wayback.archive.org/web/*/%s"
+bmark -keyword cache -title "Google Cache" "http://webcache.googleusercontent.com/search?q=cache:%s"
+
+""" Seach current site
+command! -nargs=* search -js { var site = ["site:" +window.content.document.location.host]; dactyl.open(site.concat(args).join(" ")); }
+
+" Larger hints and command line fonts
+hi Hint -a font-size: 150% !important
+hi Normal>*,CmdInput>* { font-family: monospace; font-size: 14px }

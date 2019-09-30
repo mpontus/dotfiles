@@ -1,8 +1,0 @@
-" -*- mode: vimrc -*-
-
-source ~/.pentadactyl/src/config.dactyl
-source ~/.pentadactyl/src/key-bindings.dactyl
-source ~/.pentadactyl/src/tab-rotate.dactyl
-source ~/.pentadactyl/src/emacsey.dactyl
-source ~/.pentadactyl/src/search-engines.dactyl
-source ~/.pentadactyl/src/visual.dactyl

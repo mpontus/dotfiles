@@ -1,6 +1,3 @@
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
-
 # Add local binaries
 export PATH="$HOME/bin:$PATH"
 
@@ -23,19 +20,33 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # [[ -s "/Users/michael/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michael/.sdkman/bin/sdkman-init.sh"
 
 # Install pip executables
-export PATH="$PATH:`python -m site --user-base`/bin"
+# export PATH="$PATH:`python -m site --user-base`/bin"
 
+if [ -d ~/.cargo ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
 
-# Load .bashrc if not already loaded
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
+  # Add rustup tools
+  source $HOME/.cargo/env
+fi
+
+if [ -d ~/.rvm ]; then
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  export PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+# Install rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# including this ensures that new gnome-terminal tabs keep the parent `pwd` !
+if [ -e /etc/profile.d/vte.sh ]; then
+    . /etc/profile.d/vte.sh
+fi
+
+if [ -d ~/go ]; then
+  PATH="$PATH:$HOME/go/bin"
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Add rustup tools
-source $HOME/.cargo/env
-
-# Add rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"

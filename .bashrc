@@ -26,9 +26,19 @@ function mkcd {
     cd $@
 }
 
+# Create an alias for accessing clipboard
+alias clip="xclip -selection clipboard"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Beep does not always produce sound
+alias beep="notify-send Beep"
 
 # Enable Ctrl-O
 stty discard undef
+
+if [ -f ~/.bash_profile ]; then
+  source ~/.bash_profile
+fi
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+PATH=/home/mpontus/.npm-packages/bin:$PATH

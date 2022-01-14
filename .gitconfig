@@ -6,3 +6,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = store
+[github]
+	user = m.pontus@gmail.com
+	oauth-token = 

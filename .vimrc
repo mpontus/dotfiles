@@ -1,3 +1,8 @@
+" Install Pathogen.vim
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 " Set tab width to 2 spaces wide
 set tabstop=2
 " Insert spaces when TAB is pressed
